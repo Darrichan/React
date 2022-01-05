@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- 添加react依赖 -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- 在写jsx时，必须添加type属性 -->
+  <!-- 方法一： -->
+  <!-- <script type="text/babel">
+    let message = 'Hello React!'
+    let btnClick = function () {
+      message = 'Hello World';
+      Render();
+    }
+    function Render() {
+      ReactDOM.render(
+        <div>
+          <h2>{message}</h2>
+          <button onClick={btnClick}>改变文本</button>
+        </div>,
+        document.getElementById("app")
+      )
+    }
+    Render()
+  </script> -->
+  <!-- 方法二 -->
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state={
+          message:"Hello React!"
+        }
+        this.message = 'Hello React!';
+      }
+      render() {
+        return (
+          <div>
+            <h2>{this.state.message}</h2>
+            <button onClick={this.btnClick.bind(this)}>改变文本</button>
+          </div>
+        )
+      }
+      btnClick(){
+        this.setState({
+          message:'Hello World!'
+        })
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>
